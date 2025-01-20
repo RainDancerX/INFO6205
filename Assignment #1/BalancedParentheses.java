@@ -1,7 +1,7 @@
 /*
  * @Author: lucas lantasy.io@gmail.com
  * @Date: 2025-01-18 23:31:24
- * @LastEditTime: 2025-01-19 18:13:00
+ * @LastEditTime: 2025-01-19 18:51:54
  * @Description: 
  */
 /*
@@ -19,7 +19,7 @@ public class BalancedParentheses {
     public static boolean isBalanced(String s) {
         Stack<Character> newStack = new Stack<>();
         for(char ch:s.toCharArray()) {
-            if(ch != ')' & ch!= '}' & ch!= ']') 
+            if(ch != ')' && ch!= '}' && ch!= ']') 
                 newStack.push(ch);
             else{
                 if(newStack.isEmpty()){
@@ -41,7 +41,7 @@ public class BalancedParentheses {
                 }
             }
         }
-        return true; // UPDATE THIS LINE OF CODE ALSO!
+        return newStack.isEmpty(); // UPDATE THIS LINE OF CODE ALSO!
     }
 
     public static void main(String[] args) {

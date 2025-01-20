@@ -1,7 +1,7 @@
 /*
  * @Author: lucas lantasy.io@gmail.com
  * @Date: 2025-01-18 23:31:24
- * @LastEditTime: 2025-01-19 18:21:48
+ * @LastEditTime: 2025-01-19 18:47:48
  * @Description: 
  */
 /*
@@ -20,32 +20,37 @@ public class ReversePolishNotation {
     
     public static int evalRPN(String[] tokens) {
         // WRITE YOUR CODE HERE!!!
-        Stack<String> s = new Stack<>();
+        Stack<Integer> s = new Stack<>();
 
         for(String str:tokens){
-            if(str != "+" && str != "-" && str != "*" && str != "/"){
-                s.push(str);
+            if(!str.equals("+") && !str.equals("-") && !str.equals("*") && !str.equals("/")){
+                s.push(Integer.parseInt(str));
             }else {
-                int right = Integer.parseInt(s.pop());
-                int left = Integer.parseInt(s.pop());
+                int right = s.pop();
+                int left = s.pop();
                 switch(str){
                     case "+":
-                        s.push(Integer.toString(left + right));
+                        s.push(left + right);
                         break;
                     case "-":
-                        s.push(Integer.toString(left - right));
+                        s.push(left - right);
                         break;
                     case "*":
-                        s.push(Integer.toString(left * right));
+                        s.push(left * right);
                         break;
                     case "/":
-                        s.push(Integer.toString(left / right));
+                        if (right == 0) {
+                            throw new ArithmeticException("Division by zero is not allowed.");
+                        }
+                        s.push(left / right);
                         break;
+                    default:
+                        throw new IllegalArgumentException("Unknown operator: " + str);
                 }
             }
         }
 
-        return Integer.parseInt(s.pop()); // UPDATE THIS LINE OF CODE ALSO !!!!
+        return s.pop(); // UPDATE THIS LINE OF CODE ALSO !!!!
     }
 
     public static void main(String[] args) {
